@@ -1,30 +1,30 @@
 package it.sevenbits.homework.parser;
 
 public class Parser {
-
-    public static String[] parse(String strInput) {
-
+    public String[] parse(final String strInput) {
+        String str = strInput.trim().replaceAll(" {2,}", " ");
         int countSpace = 0;
 
-        for (int i = 0; i < strInput.length(); i++) {
-            if (strInput.charAt(i) == ' ') {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
                 countSpace++;
             }
         }
 
         String mass[] = new String[countSpace + 1];
+        StringBuilder sb = new StringBuilder();
 
-        String tmpStr = "";
-
-        for (int i = 0, j = 0; i < strInput.length(); i++) {
-            if (strInput.charAt(i) == ' ') {
-                j++;
-                tmpStr = "";
-            } else {
-                tmpStr = tmpStr + strInput.charAt(i);
+         for (int i = 0, j = 0; i < str.length(); i++) {
+            if (str.charAt(i) != ' ') {
+                sb = sb.append(str.charAt(i));
             }
-            mass[j] = tmpStr;
+            if(str.charAt(i) == ' ' || i==str.length()-1) {
+                mass[j] = sb.toString();
+                sb.setLength(0);
+                j++;
+            }
         }
         return mass;
+
     }
 }
