@@ -1,14 +1,14 @@
 package it.sevenbits.homework;
 
+import it.sevenbits.homework.parser.Parser;
+
 import java.util.Arrays;
-
-
-import static it.sevenbits.homework.parser.Parser.parse;
 
 public class Main {
     public static void main(String[] args) {
-
-        String str = "Hello How are you";
-        System.out.println(Arrays.asList(parse(str)));
+        Parser parser = new Parser();
+        String str = " Hello world How      Are  You   ";
+        String str1 = str;
+        System.out.println(Arrays.toString(parser.parse(str1)));
     }
 }
