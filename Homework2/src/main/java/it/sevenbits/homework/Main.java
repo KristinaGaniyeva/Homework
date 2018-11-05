@@ -1,6 +1,8 @@
 package it.sevenbits.homework;
 
 import it.sevenbits.homework.parser.FileParser;
+
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -12,9 +14,13 @@ public class Main {
      * @param args - console arguments
      */
     public static void main(final String[] args) {
-        String delimiter = " ";
+        String delimiter = ".";
         FileParser parser = new FileParser();
-        String source = "../Homework2/Notes.txt";
-        System.out.println(Arrays.toString(parser.parse(delimiter, source)));
+        String source = "src/main/resources/Notes.txt";
+        try {
+            System.out.println(Arrays.toString(parser.parse(delimiter, source)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

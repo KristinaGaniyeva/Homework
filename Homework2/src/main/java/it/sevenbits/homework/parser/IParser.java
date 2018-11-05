@@ -1,5 +1,7 @@
 package it.sevenbits.homework.parser;
 
+import java.io.IOException;
+
 /**
  * Interface for working with the parse method
  */
@@ -10,5 +12,5 @@ public interface IParser {
      * @param source string
      * @return array
      */
-    String[] parse(String delimiter, String source);
+    String[] parse(String delimiter, String source) throws IOException;
 }
