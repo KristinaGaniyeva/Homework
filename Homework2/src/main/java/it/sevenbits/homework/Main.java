@@ -16,11 +16,11 @@ public class Main {
     public static void main(final String[] args) {
         String delimiter = ".";
         FileParser parser = new FileParser();
-        String source = "src/main/resources/Notes.txt";
+        String source = "src/main/resources/notes.txt";
         try {
             System.out.println(Arrays.toString(parser.parse(delimiter, source)));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Invalid string");
         }
     }
 }

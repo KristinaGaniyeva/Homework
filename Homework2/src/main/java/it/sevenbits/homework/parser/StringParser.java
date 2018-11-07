@@ -8,7 +8,7 @@ public class StringParser implements IParser {
      * The method splits the string and writes to the array
      *
      * @param delimiter split for string
-     * @param source    string
+     * @param source string
      * @return array mass
      */
     public String[] parse(final String delimiter, final String source) {
@@ -64,14 +64,3 @@ public class StringParser implements IParser {
         return sb.toString();
     }
 }
-
-//    public String stringReplace (String delimiter, String source) {
-//        StringBuilder sb = new StringBuilder();
-//        for (int i = 0; i < source.length(); i++) {
-//            if (source.charAt(i) == delimiter.charAt(0)) {
-//                sb.append(source.charAt(i));
-//            }
-//        }
-//        return sb.toString();
-//    }
-//}

@@ -23,15 +23,15 @@ public class ParserTest {
         assertNull(result);
     }
 
-    @Test
-    public void parseFewWords() {
-        String [] exp = new String[]{"Hello", "world"};
-        Assert.assertArrayEquals(exp,stringParser.parse(" ", "Hello world"));
-    }
+//    @Test
+//    public void parseFewWords() {
+//        String [] exp = new String[]{"Hello", "world"};
+//        Assert.assertArrayEquals(exp,stringParser.parse(" ", "Hello world"));
+//    }
 
-    @Test
-    public void parseArrayWord() {
-        String [] exp = new String[]{"Hello"};
-        Assert.assertArrayEquals(exp,stringParser.parse(" ", "Hello"));
-    }
+//    @Test
+//    public void parseArrayWord() {
+//        String [] exp = new String[]{"Hello"};
+//        Assert.assertArrayEquals(exp,stringParser.parse(" ", "Hello"));
+//    }
 }
