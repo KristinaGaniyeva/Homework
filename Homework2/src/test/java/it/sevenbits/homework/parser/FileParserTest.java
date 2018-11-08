@@ -18,11 +18,12 @@ public class FileParserTest {
         fileParser = new FileParser();
     }
 
-    @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
-
     @Test
-    public void parse() throws IOException {
-
+    public void parse() throws IOException, StringParserException {
+        String [] str = {"Hello", "world"};
+        String delimiter = ".";
+        String source = "src/test/resources/notesTest.txt";
+        String[] result = fileParser.parse(delimiter, source);
+        assertArrayEquals(str, result);
     }
 }

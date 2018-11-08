@@ -11,7 +11,7 @@ public class FileParser implements IParser {
      * @param source    string
      * @return array text
      */
-    public String[] parse(final String delimiter, final String source) throws IOException {
+    public String[] parse(final String delimiter, final String source) throws IOException, StringParserException {
         String[] text;
         StringBuilder sb = new StringBuilder();
         StringParser parser = new StringParser();

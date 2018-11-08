@@ -12,5 +12,5 @@ public interface IParser {
      * @param source string
      * @return array
      */
-    String[] parse(String delimiter, String source) throws IOException;
+    String[] parse(String delimiter, String source) throws IOException, StringParserException;
 }

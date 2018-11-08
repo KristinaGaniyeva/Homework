@@ -14,11 +14,16 @@ public class StringParserTest {
     }
 
     @Test
-    public void parse() {
+    public void parse() throws StringParserException {
         String str = "Hello world";
         String delimiter = " ";
         String[] result = stringParser.parse(delimiter, str);
         assertArrayEquals(new String[]{"Hello", "world"}, result);
+    }
+
+    @Test(expected = StringParserException.class)
+    public void testStringParserException() throws StringParserException {
+        stringParser.parse("", "Hello");
     }
 
     @Test
