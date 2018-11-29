@@ -14,27 +14,21 @@ import static org.mockito.Mockito.when;
 public class OneWordGrepTest {
 
     private static OneWordGrep oneWordGrep;
+    private String searchLine;
 
     @Before
     public void setUp() {
-        oneWordGrep = new OneWordGrep();
-    }
+        searchLine = "first string";
+        oneWordGrep = new OneWordGrep(searchLine);
 
-    @Test
-    public void testDoGrepWithMock() throws IOException {
-        Reader mockReader = mock(BufferedReader.class);
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Hello");
-        when(((BufferedReader) mockReader).readLine()).thenReturn("Hello world");
-        assertEquals(list, oneWordGrep.doGrep(mockReader));
     }
 
     @Test
     public void testDoGrep() throws IOException {
-        File file = new File("./src/test/resources/GrepTest.txt");
+        File file = new File("./src/main/resources/notes.txt");
         Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-        ArrayList<String> list = new ArrayList<String>();
-        list.add("Hello world");
+        ArrayList<String> list = new ArrayList<>();
+        list.add("first string");
         assertEquals(list, oneWordGrep.doGrep(reader));
     }
 }

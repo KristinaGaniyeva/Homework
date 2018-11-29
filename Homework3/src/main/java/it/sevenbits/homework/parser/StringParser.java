@@ -10,6 +10,7 @@ public class StringParser implements IParser {
      * @param delimiter split for string
      * @param source    string
      * @return array mass
+     * @throws StringParserException parser exception
      */
     public String[] parse(final String delimiter, final String source) throws StringParserException {
 
