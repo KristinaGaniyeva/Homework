@@ -2,7 +2,7 @@ package it.sevenbits.homework.grep.Exception;
 
 
 /**
- * Class with exception for Triangle
+ * Class with exception for AndGrep
  */
 public class AndGrepException extends Throwable {
     /**

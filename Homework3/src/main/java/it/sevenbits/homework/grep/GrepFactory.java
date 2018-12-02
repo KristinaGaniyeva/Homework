@@ -1,6 +1,5 @@
 package it.sevenbits.homework.grep;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,19 +12,16 @@ public class GrepFactory {
      * @return oneWordGrep
      */
     public OneWordGrep getOneWordGrep(final String line) {
-        OneWordGrep oneWordGrep = new OneWordGrep(line);
-        return oneWordGrep;
+        return new OneWordGrep(line);
     }
 
     /**
      * Method returns orGrep
      * @param list ArrayList
      * @return orGrep
-     * @throws IOException exception
      */
-    public OrGrep getOrGrep(final ArrayList list) throws IOException {
-        OrGrep orGrep = new OrGrep(list);
-        return orGrep;
+    public OrGrep getOrGrep(final ArrayList list) {
+        return new OrGrep(list);
     }
     /**
      * Method returns andGrep
@@ -33,7 +29,6 @@ public class GrepFactory {
      * @return andGrep
      */
     public AndGrep getAndGrep(final ArrayList list)  {
-        AndGrep andGrep = new AndGrep(list);
-        return andGrep;
+        return new AndGrep(list);
     }
 }

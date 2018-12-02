@@ -1,11 +1,7 @@
 package it.sevenbits.homework.grep;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +13,7 @@ public class OrGrep implements IGrep {
 
     /**
      * Class constructor
+     *
      * @param searchLine string to find
      */
     public OrGrep(final ArrayList searchLine) {
@@ -25,26 +22,30 @@ public class OrGrep implements IGrep {
 
     /**
      * Returns those strings that contain at least one word from the input set
+     *
      * @param reader reader
      * @return list
      * @throws IOException reader exception
      */
-    public List doGrep(Reader reader) throws IOException {
-        File file = new File("./src/main/resources/notes.txt");
+    public List doGrep(final Reader reader) throws IOException {
         ArrayList<String> list = new ArrayList<>();
-        ArrayList<String> listResult = new ArrayList<>();
-        String strLine;
-        reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-        while ((strLine = ((BufferedReader) reader).readLine()) != null) {
-            list.add(strLine);
-        }
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < searchLine.size(); j++) {
-                if (list.get(i).equals(searchLine.get(j))) {
-                    listResult.add(list.get(i));
+        StringBuilder sb = new StringBuilder();
+        int text;
+        while ((text = (reader).read()) != -1) {
+            if ((char) text != '\n') {
+                sb.append((char) text);
+            }
+            if ((char) text == '\n') {
+                if (searchLine.contains(sb.toString())) {
+                    list.add(sb.toString());
                 }
+                sb = new StringBuilder();
             }
         }
-        return listResult;
+        if (searchLine.contains(sb.toString())) {
+            list.add(sb.toString());
+        }
+        reader.close();
+        return list;
     }
 }

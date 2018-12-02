@@ -2,13 +2,8 @@ package it.sevenbits.homework.grep;
 
 import it.sevenbits.homework.grep.Exception.AndGrepException;
 
-
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,27 +28,37 @@ public class AndGrep implements IGrep {
      * @throws IOException reader exception
      * @throws AndGrepException andGrep exception
      */
-    public List doGrep(Reader reader) throws IOException, AndGrepException {
+    public List doGrep(final Reader reader) throws IOException, AndGrepException {
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> listResult = new ArrayList<>();
-        String strLine;
-        File file = new File("./src/main/resources/notes.txt");
-        reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-        while ((strLine = ((BufferedReader) reader).readLine()) != null) {
-            list.add(strLine);
-        }
-        reader.close();
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < searchLine.size(); j++) {
-                if (list.contains(searchLine.get(j))) {
-                    if (list.get(i).equals(searchLine.get(j))) {
-                        listResult.add(list.get(i));
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        int text;
+        while ((text = (reader).read()) != -1) {
+            if ((char) text != '\n') {
+                sb.append((char) text);
+            }
+            if ((char) text == '\n') {
+                count++;
+                if (searchLine.contains(sb.toString())) {
+                    list.add(sb.toString());
+                    if (count == searchLine.size()) {
+                        listResult = list;
                     }
-                } else {
-                    throw new AndGrepException("All entered data must correspond to the data from the file");
+                    sb = new StringBuilder();
                 }
             }
         }
+        count++;
+        if (searchLine.contains(sb.toString())) {
+            list.add(sb.toString());
+            if (count == searchLine.size()) {
+                listResult = list;
+            }
+        } else {
+            throw new AndGrepException("Not all data found");
+        }
+        reader.close();
         return listResult;
     }
 }

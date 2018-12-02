@@ -1,11 +1,7 @@
 package it.sevenbits.homework.grep;
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.InputStreamReader;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,16 +27,26 @@ public class OneWordGrep implements IGrep {
      * @return list
      * @throws IOException exception
      */
-    public List doGrep(Reader reader) throws IOException {
+    public List doGrep(final Reader reader) throws IOException {
         ArrayList<String> list = new ArrayList<>();
-        String strLine;
-        File file = new File("./src/main/resources/notes.txt");
-        reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-        while ((strLine = ((BufferedReader) reader).readLine()) != null) {
-            if (strLine.contains(searchLine)) {
-                list.add(strLine);
+        StringBuilder sb = new StringBuilder();
+        int text;
+            while ((text = (reader).read()) != -1) {
+                if ((char) text != '\n') {
+                    sb.append((char) text);
+                }
+                if ((char) text == '\n') {
+                    if (sb.toString().contains(searchLine)) {
+                        list.add(sb.toString());
+                    }
+                    sb = new StringBuilder();
+                }
             }
-        }
+            if (sb.toString().contains(searchLine)) {
+                list.add(sb.toString());
+            }
+
+        reader.close();
         return list;
     }
 }
