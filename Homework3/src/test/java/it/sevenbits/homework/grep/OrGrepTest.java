@@ -18,8 +18,9 @@ public class OrGrepTest {
     @Before
     public void setUp()  {
         searchLine = new ArrayList<>();
-        searchLine.add("second string");
-        searchLine.add("fourth string");
+        searchLine.add("fourth");
+        searchLine.add("fifth");
+        searchLine.add("first");
         orGrep = new OrGrep(searchLine);
     }
 
@@ -33,6 +34,7 @@ public class OrGrepTest {
         Reader reader = new InputStreamReader(new FileInputStream(file));
         ArrayList<String> list = new ArrayList<>();
         list.add("fourth string");
+        list.add("fifth string");
         assertEquals(list, orGrep.doGrep(reader));
     }
 
@@ -45,6 +47,7 @@ public class OrGrepTest {
         Reader mockReader = mock(Reader.class);
         ArrayList<String> list = new ArrayList<>();
         list.add("fourth string");
+        list.add("first string");
         when(mockReader.read()).thenReturn(102, 111, 117, 114, 116, 104, 32, 115, 116, 114, 105, 110, 103, 10,
                 102, 105, 114, 115, 116, 32, 115, 116, 114, 105, 110, 103).thenReturn(-1);
         assertEquals(list, orGrep.doGrep(mockReader));

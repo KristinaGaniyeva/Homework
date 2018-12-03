@@ -1,6 +1,5 @@
 package it.sevenbits.homework.grep;
 
-import it.sevenbits.homework.grep.Exception.AndGrepException;
 import org.junit.Before;
 import org.junit.Test;
 import java.io.*;
@@ -24,12 +23,11 @@ public class AndGrepTest {
     /**
      * The test checks the work method doGrep() for OrGrep
      * @throws IOException exception reader
-     * @throws AndGrepException exception AndGrep
      */
     @Test
-    public void testDoGrep() throws IOException, AndGrepException {
-        searchLine.add("fourth string");
-        searchLine.add("fifth string");
+    public void testDoGrep() throws IOException {
+        searchLine.add("fifth");
+        searchLine.add("fourth");
         andGrep = new AndGrep(searchLine);
         File file = new File("./src/test/resources/GrepTest.txt");
         Reader reader = new InputStreamReader(new FileInputStream(file));
@@ -42,12 +40,11 @@ public class AndGrepTest {
     /**
      * The test checks the work of the doGrep() method for OneWordGrep with a mock reader
      * @throws IOException exception reader
-     * @throws AndGrepException exception AndGrep
      */
     @Test
-    public void testDoGrepWithMock() throws IOException, AndGrepException {
-        searchLine.add("fourth string");
-        searchLine.add("fifth string");
+    public void testDoGrepWithMock() throws IOException {
+        searchLine.add("fourth");
+        searchLine.add("fifth");
         andGrep = new AndGrep(searchLine);
         Reader mockReader = mock(Reader.class);
         ArrayList<String> list = new ArrayList<>();
@@ -61,12 +58,11 @@ public class AndGrepTest {
     /**
      * The test checks if all required strings are not found
      * @throws IOException exception reader
-     * @throws AndGrepException exception AndGrep
      */
-    @Test(expected = AndGrepException.class)
-    public void testDoGrepException() throws IOException, AndGrepException {
-        searchLine.add("fourth string");
-        searchLine.add("first string");
+    @Test
+    public void testGrepConditionNotMet() throws IOException {
+        searchLine.add("fourth");
+        searchLine.add("second");
         andGrep = new AndGrep(searchLine);
         File file = new File("./src/test/resources/GrepTest.txt");
         Reader reader = new InputStreamReader(new FileInputStream(file));

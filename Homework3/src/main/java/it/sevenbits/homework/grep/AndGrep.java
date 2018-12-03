@@ -1,7 +1,5 @@
 package it.sevenbits.homework.grep;
 
-import it.sevenbits.homework.grep.Exception.AndGrepException;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -11,7 +9,7 @@ import java.util.List;
  * Class AndGrep
  */
 public class AndGrep implements IGrep {
-    private ArrayList searchLine;
+    private ArrayList<String> searchLine;
 
     /**
      * Class constructor
@@ -26,9 +24,8 @@ public class AndGrep implements IGrep {
      * @param reader reader
      * @return list
      * @throws IOException reader exception
-     * @throws AndGrepException andGrep exception
      */
-    public List doGrep(final Reader reader) throws IOException, AndGrepException {
+    public List doGrep(final Reader reader) throws IOException {
         ArrayList<String> list = new ArrayList<>();
         ArrayList<String> listResult = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
@@ -40,23 +37,25 @@ public class AndGrep implements IGrep {
             }
             if ((char) text == '\n') {
                 count++;
-                if (searchLine.contains(sb.toString())) {
-                    list.add(sb.toString());
-                    if (count == searchLine.size()) {
-                        listResult = list;
+                for (int i = 0; i < searchLine.size(); i++) {
+                    if (sb.toString().contains(searchLine.get(i))) {
+                        list.add(sb.toString());
+                        if (count == searchLine.size()) {
+                            listResult = list;
+                        }
                     }
-                    sb = new StringBuilder();
                 }
+                sb = new StringBuilder();
             }
         }
         count++;
-        if (searchLine.contains(sb.toString())) {
-            list.add(sb.toString());
-            if (count == searchLine.size()) {
-                listResult = list;
+        for (int i = 0; i < searchLine.size(); i++) {
+            if (sb.toString().contains(searchLine.get(i))) {
+                list.add(sb.toString());
+                if (count == searchLine.size()) {
+                    listResult = list;
+                }
             }
-        } else {
-            throw new AndGrepException("Not all data found");
         }
         reader.close();
         return listResult;

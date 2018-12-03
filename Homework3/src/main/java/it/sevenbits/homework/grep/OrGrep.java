@@ -36,14 +36,18 @@ public class OrGrep implements IGrep {
                 sb.append((char) text);
             }
             if ((char) text == '\n') {
-                if (searchLine.contains(sb.toString())) {
-                    list.add(sb.toString());
+                for (int i = 0; i < searchLine.size(); i++) {
+                    if (sb.toString().contains(searchLine.get(i))) {
+                        list.add(sb.toString());
+                    }
                 }
                 sb = new StringBuilder();
             }
         }
-        if (searchLine.contains(sb.toString())) {
-            list.add(sb.toString());
+        for (int i = 0; i < searchLine.size(); i++) {
+            if (sb.toString().contains(searchLine.get(i))) {
+                list.add(sb.toString());
+            }
         }
         reader.close();
         return list;

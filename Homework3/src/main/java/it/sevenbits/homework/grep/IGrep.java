@@ -1,7 +1,5 @@
 package it.sevenbits.homework.grep;
 
-import it.sevenbits.homework.grep.Exception.AndGrepException;
-
 import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
@@ -15,7 +13,6 @@ public interface IGrep {
      * @param reader Reader
      * @return Arraylist
      * @throws IOException reader exception
-     * @throws AndGrepException andGrep exception
      */
-    List doGrep(Reader reader) throws IOException, AndGrepException;
+    List doGrep(Reader reader) throws IOException;
 }
