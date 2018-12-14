@@ -18,7 +18,7 @@ public class OneWordGrepTest {
 
     @Before
     public void setUp() {
-        searchLine = "fourth";
+        searchLine = "Fourth";
         oneWordGrep = new OneWordGrep(searchLine);
     }
 

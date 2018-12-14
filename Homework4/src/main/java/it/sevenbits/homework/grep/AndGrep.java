@@ -9,13 +9,13 @@ import java.util.List;
  * Class AndGrep
  */
 public class AndGrep implements IGrep {
-    private ArrayList<String> searchLine;
+    private List<String> searchLine;
 
     /**
      * Class constructor
      * @param searchLine string to find
      */
-    public AndGrep(final ArrayList searchLine) {
+    public AndGrep(final List<String> searchLine) {
         this.searchLine = searchLine;
     }
 
@@ -38,7 +38,7 @@ public class AndGrep implements IGrep {
             if ((char) text == '\n') {
                 count++;
                 for (int i = 0; i < searchLine.size(); i++) {
-                    if (sb.toString().contains(searchLine.get(i))) {
+                    if (sb.toString().toLowerCase().contains(searchLine.get(i).toLowerCase())) {
                         list.add(sb.toString());
                         if (count == searchLine.size()) {
                             listResult = list;
@@ -50,7 +50,7 @@ public class AndGrep implements IGrep {
         }
         count++;
         for (int i = 0; i < searchLine.size(); i++) {
-            if (sb.toString().contains(searchLine.get(i))) {
+            if (sb.toString().toLowerCase().contains(searchLine.get(i).toLowerCase())) {
                 list.add(sb.toString());
                 if (count == searchLine.size()) {
                     listResult = list;

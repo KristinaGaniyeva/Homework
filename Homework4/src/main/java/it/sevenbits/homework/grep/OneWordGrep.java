@@ -36,13 +36,13 @@ public class OneWordGrep implements IGrep {
                     sb.append((char) text);
                 }
                 if ((char) text == '\n') {
-                    if (sb.toString().contains(searchLine)) {
+                    if (sb.toString().toLowerCase().contains(searchLine.toLowerCase())) {
                         list.add(sb.toString());
                     }
                     sb = new StringBuilder();
                 }
             }
-            if (sb.toString().contains(searchLine)) {
+            if (sb.toString().toLowerCase().contains(searchLine.toLowerCase())) {
                 list.add(sb.toString());
             }
 

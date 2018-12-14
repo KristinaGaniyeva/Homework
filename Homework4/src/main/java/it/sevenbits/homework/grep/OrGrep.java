@@ -9,14 +9,14 @@ import java.util.List;
  * Class OrGrep
  */
 public class OrGrep implements IGrep {
-    private ArrayList<String> searchLine;
+    private List<String> searchLine;
 
     /**
      * Class constructor
      *
      * @param searchLine string to find
      */
-    public OrGrep(final ArrayList searchLine) {
+    public OrGrep(final List<String> searchLine) {
         this.searchLine = searchLine;
     }
 
@@ -37,16 +37,18 @@ public class OrGrep implements IGrep {
             }
             if ((char) text == '\n') {
                 for (int i = 0; i < searchLine.size(); i++) {
-                    if (sb.toString().contains(searchLine.get(i))) {
+                    if (sb.toString().toLowerCase().contains(searchLine.get(i).toLowerCase())) {
                         list.add(sb.toString());
+                        break;
                     }
                 }
                 sb = new StringBuilder();
             }
         }
         for (int i = 0; i < searchLine.size(); i++) {
-            if (sb.toString().contains(searchLine.get(i))) {
+            if (sb.toString().toLowerCase().contains(searchLine.get(i).toLowerCase())) {
                 list.add(sb.toString());
+                break;
             }
         }
         reader.close();
